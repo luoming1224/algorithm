@@ -70,6 +70,7 @@ int sunday(const string& s, const string& p)			//´Ó×óÏòÓÒÆ¥Åä
 	}
 
 	int pos = 0;
+	bool flag = false;
 	while (pos < (slen-plen+1))
 	{
 		int k = 0;
@@ -77,6 +78,11 @@ int sunday(const string& s, const string& p)			//´Ó×óÏòÓÒÆ¥Åä
 		{
 			if (p[k] != s[pos+k])
 			{
+				if (pos + plen >= slen)
+				{
+					flag = true;
+					break;
+				}
 				pos += next[(int)s[pos+plen]];
 				break;
 			}
@@ -84,7 +90,16 @@ int sunday(const string& s, const string& p)			//´Ó×óÏòÓÒÆ¥Åä
 		if (k == plen)
 		{
 			count++;
+			if (pos + plen >= slen)
+			{
+				flag = true;
+				break;
+			}
 			pos += next[(int)s[pos+plen]];
+		}
+		if (flag)
+		{
+			break;
 		}
 	}
 	return count;
