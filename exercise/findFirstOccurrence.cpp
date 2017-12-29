@@ -8,33 +8,17 @@ using namespace std;
 
 int findFirstOccurrence(int A[], int size, int num) {
     int l = 0, r = size - 1;
-    int p = -1;
     while (l <= r) {
         int m = (l + r) / 2;
-        if (-1 == p) {
-            if (A[m] < num) {
-                l = m + 1;
-            } else if (A[m] > num) {
-                r = m -1;
-            } else {
-                p = m;
-                r = m;
-            }
+        if (A[m] < num) {
+            l = m + 1;
+        } else if (A[m] > num) {
+            r = m -1;
         } else {
-            if (l == r) {
-                return l;
-            } else if(l + 1 == r) {
-                if (A[l] == num) {
-                    return l;
-                } else {
-                    return r;
-                }
+            if (m > 0 && A[m-1] != num || m == 0) {
+                return m;
             }
-            if (A[m] == num) {
-                r = m;
-            } else if (A[m] < num) {
-                l = m;
-            }
+            r = m - 1;
         }
     }
     return -1;
