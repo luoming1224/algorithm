@@ -59,6 +59,14 @@ int main(int argc, char **argv) {
     while (!infile.eof()) {
         std::getline(infile, line);
         cout << line << endl;
+        
+        istringstream is(line);
+        string word;
+        while (is >> word) {
+            if (isWord(word, word.length())) {
+                mapOfWords[word]++;
+            }
+        }
    /*     
         int i, pos1 = -1;
         bool invalidWord = false;
@@ -91,6 +99,7 @@ int main(int argc, char **argv) {
             mapOfWords[word]++;
         }
 */
+        /*
         std::string::size_type pos1, pos2;
         pos2 = line.find(" ");
         pos1 = 0;
@@ -108,6 +117,7 @@ int main(int argc, char **argv) {
                 mapOfWords[word]++;
             }
         }
+        */
 
     }
     infile.close();
